@@ -3785,6 +3785,7 @@ impl User {
         // at `pwd`.
         unsafe {
             User::from_anything(|pwd, cbuf, cap, res| {
+                Errno::clear();
                 libc::getpwuid_r(uid.0, pwd, cbuf, cap, res)
             })
         }
@@ -3813,6 +3814,7 @@ impl User {
         // at `pwd`.
         unsafe {
             User::from_anything(|pwd, cbuf, cap, res| {
+                Errno::clear();
                 libc::getpwnam_r(name.as_ptr(), pwd, cbuf, cap, res)
             })
         }
